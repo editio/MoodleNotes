@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="José Luis Losada Palenzuela" />
+
+
+<title>Moodle (own) Documentation</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Moodle Documentation</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="about.html">
+    <span class="fa fa-info"></span>
+     
+    About
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Moodle (own) Documentation</h1>
+<h4 class="author">José Luis Losada Palenzuela</h4>
+<h4 class="date">4/18/2020</h4>
+
+</div>
+
+
+<p>Własna dokumentacja dla przegotowania (nagłej) lekcji Moodla</p>
+<div id="otworzenie-kursu-przez-cko" class="section level1">
+<h1>Otworzenie kursu przez CKO</h1>
+<ol style="list-style-type: decimal">
+<li>Mail do <a href="mailto:cko@uwr.edu.pl">cko@uwr.edu.pl</a> z informację:</li>
+</ol>
+<ul>
+<li><em>nazwę przedmiotu</em>: __</li>
+<li><em>kody USOS przedmiotów</em>: __</li>
+<li><em>podpis zawierający nazwę Wydział/Instytut/Zakład</em>: __</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Link do kursu : <a href="https://e-edu.cko.uni.wroc.pl/course/view.php?id=1552" class="uri">https://e-edu.cko.uni.wroc.pl/course/view.php?id=1552</a></p></li>
+<li><p>Optional (n.p., nowy klucz): Administracja kursem &gt; Użytkownicy &gt; Metody zapisów.</p></li>
+<li><p>Wysłać e-mail studentom z linkiem i hasłem via USOS.</p></li>
+</ol>
+</div>
+<div id="dodawać-modyfikować-zmienić" class="section level1">
+<h1>Dodawać, modyfikować, zmienić!</h1>
+<ul>
+<li>Administracja kursem &gt; Wyłącz tryb edycji == Menu akcji <svg style="height:0.8em;top:.04em;position:relative;fill:#1177d1;" viewBox="0 0 512 512"><path d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"/></svg> &gt; Wyłącz tryb edycji</li>
+</ul>
+</div>
+<div id="dodawanie-topic" class="section level1">
+<h1>Dodawanie <em>Topic</em></h1>
+<p>tzn. lekcja/spotkanie/zajęcia</p>
+<ul>
+<li><svg style="height:0.8em;top:.04em;position:relative;fill:#1177d1;" viewBox="0 0 448 512">
+<path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
+</svg>
+(tab) Zwiększ liczbę sekcji &gt; Modyfikuj &gt; <svg style="height:0.8em;top:.04em;position:relative;fill:#1177d1;" viewBox="0 0 512 512"><path d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"/></svg> Edytuj sekcję</li>
+<li><svg style="height:0.8em;top:.04em;position:relative;fill:#1177d1;" viewBox="0 0 512 512">
+<path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/>
+</svg>
+Własna nazwa</li>
+<li>Streszczenie: na razie dwa słowa o tego spotkania albo nic. Struktura czynności jest self-explanatory. Z czasem więcej…</li>
+</ul>
+<p>Tip! <svg style="height:0.8em;top:.04em;position:relative;fill:tomato;" viewBox="0 0 352 512"><path d="M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z"/></svg> Wyłącz tryb edycji &gt; Modyfikuj &gt; Hide topic . Topic jest niewidoczny dla studenta (np., podczas utworzenia nowego Topic, spróbowania czegos nowego, itd.)</p>
+</div>
+<div id="ogólna-struktura-mojej-lekcji-w-topic" class="section level1">
+<h1>Ogólna struktura mojej lekcji (w <em>Topic</em>)</h1>
+<p>Przykład treści lekcji, która została wymyślona dla każdej lekcji. Każda lekcja może składać się z całości lub tylko części:</p>
+<ul>
+<li>Tekst do czytania</li>
+<li>Ćwiczenia:
+<ul>
+<li>Fill gaps</li>
+<li>drag words</li>
+<li>check words</li>
+<li>…</li>
+</ul></li>
+<li>Pytania do tekstu</li>
+<li>Pisanie tekstów</li>
+<li>Forum</li>
+<li>Sprawdzian</li>
+</ul>
+<p>Aktywność domyślna z Moodla używana do każdej treści</p>
+<ul>
+<li>Tekst do czytania: <code>strona</code> <img src="images/strona.svg" width="15"></li>
+<li>Ćwiczenia: <code>Interactive Content</code> (<code>HP5 activity</code>) <img src="images/h5p.svg" width="15">
+<ul>
+<li>Fill gaps</li>
+<li>drag words</li>
+<li>check words</li>
+<li>…</li>
+</ul></li>
+<li>Pytania do tekstu: <code>Test (Quiz)</code> <img src="images/quiz.svg" width="15"></li>
+<li>Pisanie tekstów: <code>zadanie</code> <img src="images/zadanie.svg" width="15"></li>
+<li>Forum: <code>forum</code> <img src="images/forum.svg" width="15"></li>
+<li>Sprawdzian: <code>Test (Quiz)</code> <img src="images/quiz.svg" width="15"></li>
+</ul>
+<p align="center">
+<img width="700" src="images/struktura_kursu.png">
+</p>
+<p><strong>Dodawanie aktywności</strong></p>
+<ul>
+<li>w <em>Topic</em>: <svg style="height:0.8em;top:.04em;position:relative;fill:#1177d1;" viewBox="0 0 448 512"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/></svg> Dodaj aktywność lub zasób.</li>
+</ul>
+<div id="pytania-do-tekstu-test-quiz" class="section level2">
+<h2>Pytania do tekstu <code>Test (Quiz)</code> <img src="images/quiz.svg" width="20"></h2>
+<p>Tekst do czytania nie będzie na stronie, na której znajdują się pytania.</p>
+<ol style="list-style-type: decimal">
+<li>Pytania muszą zostać najpierw utworzone. Lepiej utworzyć zestaw pytań <strong>dostępne dla całego kursu!</strong> i zapisać je w tzw. <code>Baza pytań</code>.</li>
+</ol>
+<ul>
+<li>Administracja kursem &gt; Baza pytań &gt; utwórz nowe pytanie</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Wybierz rodzaj pytania: n.p. <img src="https://e-edu.cko.uni.wroc.pl/theme/image.php/adaptable/qtype_multichoice/1586901497/icon"  width="15"> <code>Wybór wielokrotny</code></li>
+</ol>
+<ul>
+<li>Nazwa pytania: ważny! nazwa, która dobrze identyfikuje pytanie w kursie: <strong>Texto 9 - 1.1</strong> , tzn: Topic (<strong>Texto 9</strong>) - zewstaw pytań(<strong>1</strong>) . NumPytania(<strong>1</strong>) (w tym sposób mogę je potem lepiej zidentyfikować na liście).</li>
+<li>Treść pytania: wpisz pytania! <code>¿Cuál es el tema del siguiente texto?</code></li>
+<li>Wymieszaj odpowiedzi (niezaznaczone)</li>
+<li>Odpowiedzi:
+<ul>
+<li>Wybór 1: wpisz odpowiedź! <code>La libertad y sus ataduras</code>
+<ul>
+<li>Ocena: 100% &lt;- poprawna odpowiedź.</li>
+</ul></li>
+<li>Wybór 2: wpisz odpowiedź! <code>La ambición del hombre por volar</code>
+<ul>
+<li>Ocena: Żaden</li>
+</ul></li>
+<li>…</li>
+</ul></li>
+<li><strong>almost done!</strong> (zapisz zmiany)</li>
+</ul>
+<p align="center">
+<img width="700" src="images/baza_pytan.png">
+</p>
+<p>Tip! <svg style="height:0.8em;top:.04em;position:relative;fill:tomato;" viewBox="0 0 352 512"><path d="M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z"/></svg> Po utworzeniu pytania można je duplikować i używać ponownie utworzonej struktury. Baza pytań &gt; <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z"/></svg> duplikuj.</p>
+<ul>
+<li>Extra stuff:
+<ul>
+<li>Pole do pytań i odpowiedzi jest edytorem HTML, więc można dodać, n.p., link do słownika, obraz itd.</li>
+<li>Informacja zwrotna: dodawania wyjaśnienie</li>
+</ul></li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>Dodawania pytania w <em>Topic</em></li>
+</ol>
+<ul>
+<li>Dodawanie Topic (vide supra) &gt; <svg style="height:0.8em;top:.04em;position:relative;fill:#1177d1;" viewBox="0 0 448 512"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/></svg> Dodaj aktywność lub zasób &gt; Test (Quiz)
+<ul>
+<li>Nazwa: n.p. <code>Comprensión del texto 11c</code></li>
+<li>Układ: ~ Nowa strona co 10 pytań</li>
+<li>almost done! (zapisz i wyświetl) Nie zmieniam nic innego. Studenci mogą podejść w dowolnym momencie i dowolna ilość razy.</li>
+<li>Pytania do Test (Quiz): <svg style="height:0.8em;top:.04em;position:relative;fill:#1177d1;" viewBox="0 0 512 512"><path d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"/></svg> Edytuj zawartość testu &gt; dodaj &gt; <svg style="height:0.8em;top:.04em;position:relative;fill:#1177d1;" viewBox="0 0 448 512"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/></svg> z bazy pytań</li>
+<li>zapisz <code>Łączna punktacja</code> do <code>Maksymalna ocena</code> (każde pytanie 1 punkt)</li>
+<li><strong>done!</strong></li>
+</ul></li>
+</ul>
+<p align="center">
+<img width="700" src="images/zawartoscQuiz.png">
+</p>
+<p align="center">
+<img width="700" src="images/pytanie.png">
+</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Inne</li>
+</ol>
+<ul>
+<li>Na razie używam z bazy pytań jeszcze Prawda/Fałsz. Dla innego typu pytań, HP5 activity.</li>
+<li>Używać <code>Test (Quiz)</code> do kolokwium z ustaloną datę, itd. (documentation to be done)</li>
+</ul>
+</div>
+<div id="tekst-do-czytania-strona" class="section level2">
+<h2>Tekst do czytania: <code>strona</code> <img src="images/strona.svg" width="20"></h2>
+<ul>
+<li><svg style="height:0.8em;top:.04em;position:relative;fill:#1177d1;" viewBox="0 0 448 512">
+<path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
+</svg>
+Dodaj aktywność lub zasób &gt; Strona</li>
+<li>Ogólne ~ Nazwa <code>Lee el texto. Argumentación (Pedro Salinas)</code>. Lepiej używać nazwę, która dobrze identyfikuje tekst w kursie.</li>
+<li>Wygląd (wszystkie możliwości niezaznaczone)</li>
+<li>Zawartość: wpisz tekst.</li>
+<li><strong>done!</strong></li>
+</ul>
+<div id="extra-fancy-stuff" class="section level3">
+<h3>Extra (fancy) stuff <img src="images/strona.svg" width="20"></h3>
+<p>Tego nie ma <em>out of the box</em> na platformie Moodle, to jest <strong>html &amp; javascript</strong> własnej produkcji.</p>
+<p>Interfejs <code>Zawartość strony</code> jest zwykłym edytorem HTML. Nie pozwala na dodawanie stylów do dokumentu przez element <code>&lt;link rel=&quot;stylesheet&quot;...</code>, ale można dodać CSS bezpośrednio w elementach <code>&lt;p style=&quot;text-align: right&quot;&gt;</code>;</p>
+<p>Natomiast edytor pozwala na dodawanie JavaScript przez <code>&lt;script&gt;</code> oraz bezpośrednio.</p>
+<p>Ta wersja Moodle zawiera domyślny <strong>Bootstrap</strong>!, więc można używać atrybutów, n.p., <code>&lt;button class=&quot;btn btn-info btn-sm&quot;&gt;Tesis: planteamiento&lt;/button&gt;</code>.</p>
+<ul>
+<li><p>Na pasek narzędzi edytora HTML: <svg style="height:0.8em;top:.04em;position:relative;fill:grey;" viewBox="0 0 320 512"><path d="M313.553 392.331L209.587 504.334c-9.485 10.214-25.676 10.229-35.174 0L70.438 392.331C56.232 377.031 67.062 352 88.025 352H152V80H68.024a11.996 11.996 0 0 1-8.485-3.515l-56-56C-4.021 12.926 1.333 0 12.024 0H208c13.255 0 24 10.745 24 24v328h63.966c20.878 0 31.851 24.969 17.587 40.331z"/></svg> Pokaż/ukryj zaawansowane przyciski &gt; <svg style="height:0.8em;top:.04em;position:relative;fill:grey;" viewBox="0 0 640 512"><path d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"/></svg> Edytor HTML</p></li>
+<li><p>Administracja kursem &gt; Filtry &gt; czysty HTML: wyłączony. Ale i tak uzuwa <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code>, itd.</p></li>
+<li><p>Copy &amp; paste stronę utworzoną z html + js (bezpozrednio z Sublime n.p.). Edytor usunie wszystkie elementy z header oprócz <code>&lt;script&gt;</code>.</p></li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><strong>Tooltip</strong> (z linkiem do słownika): pokazuje synonim słowa (i linkuje do słownika RAE).</li>
+</ol>
+<ul>
+<li><p>general JS libraries (Korzystam z tych libraries dla wszystkich przykładów)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="op">&lt;</span>script src=<span class="st">&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js&quot;</span><span class="op">&gt;</span><span class="er">&lt;/</span>script<span class="op">&gt;</span>
+
+<span class="st">  </span><span class="er">&lt;</span>script src=<span class="st">&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js&quot;</span><span class="op">&gt;</span><span class="er">&lt;/</span>script<span class="op">&gt;</span></code></pre></div></li>
+<li><p>Function</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&lt;</span>script<span class="op">&gt;</span>
+<span class="er">$</span>(document)<span class="kw">.ready</span>(<span class="cf">function</span>(){
+  <span class="op">$</span>(<span class="st">&#39;[data-toggle=&quot;tooltip&quot;]&#39;</span>)<span class="kw">.tooltip</span>();   
+});
+<span class="op">&lt;</span><span class="er">/</span>script<span class="op">&gt;</span></code></pre></div></li>
+<li><p>In text</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&lt;</span>p<span class="op">&gt;</span>Edgar Allan Poe no <span class="op">&lt;</span>a href=<span class="st">&quot;https://dle.rae.es/agotarse&quot;</span> data<span class="op">-</span>toggle=<span class="st">&quot;tooltip&quot;</span> title=<span class="st">&quot;acaba/termina&quot;</span> target=<span class="st">&quot;_blank&quot;</span><span class="op">&gt;</span>se agota<span class="op">&lt;</span><span class="er">/</span>a<span class="op">&gt;</span><span class="st"> </span>en sus cuentos de terror.</code></pre></div></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Click and Highlight</strong> (Może być przydatne do podświetlenia/wyróżnienia części tekstu)</li>
+</ol>
+<ul>
+<li><p>general JS libraries</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="op">&lt;</span>script src=<span class="st">&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js&quot;</span><span class="op">&gt;</span><span class="er">&lt;/</span>script<span class="op">&gt;</span>
+
+<span class="st">  </span><span class="er">&lt;</span>script src=<span class="st">&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js&quot;</span><span class="op">&gt;</span><span class="er">&lt;/</span>script<span class="op">&gt;</span></code></pre></div></li>
+<li><p>Functions</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="op">&lt;</span>script<span class="op">&gt;</span>
+<span class="st">  </span><span class="cf">function</span> <span class="kw">matiz</span>() {
+    var x =<span class="st"> </span><span class="kw">document.getElementsByClassName</span>(<span class="st">&quot;matices&quot;</span>);
+    <span class="cf">for</span> (var <span class="dt">i =</span> <span class="dv">0</span>; i <span class="op">&lt;</span><span class="st"> </span>x.length; i<span class="op">++</span>) {
+      <span class="cf">if</span> (x[i].style.color <span class="op">==</span><span class="st"> &quot;orange&quot;</span>) {
+        x[i].style.color =<span class="st"> &quot;inherit&quot;</span>;
+      } <span class="cf">else</span> {
+        x[i].style.color =<span class="st"> &quot;orange&quot;</span>;
+      }
+    }
+  }
+
+  <span class="cf">function</span> <span class="kw">negative</span>() {
+    var x =<span class="st"> </span><span class="kw">document.getElementsByClassName</span>(<span class="st">&quot;negativo&quot;</span>);
+    <span class="cf">for</span> (var <span class="dt">i =</span> <span class="dv">0</span>; i <span class="op">&lt;</span><span class="st"> </span>x.length; i<span class="op">++</span>) {
+      <span class="cf">if</span> (x[i].style.color <span class="op">==</span><span class="st"> &quot;red&quot;</span>) {
+        x[i].style.color =<span class="st"> &quot;inherit&quot;</span>;
+      } <span class="cf">else</span> {
+        x[i].style.color =<span class="st"> &quot;red&quot;</span>;
+      }
+    }
+  }
+
+  <span class="cf">function</span> <span class="kw">positive</span>() {
+    var x =<span class="st"> </span><span class="kw">document.getElementsByClassName</span>(<span class="st">&quot;positivo&quot;</span>);
+    <span class="cf">for</span> (var <span class="dt">i =</span> <span class="dv">0</span>; i <span class="op">&lt;</span><span class="st"> </span>x.length; i<span class="op">++</span>) {
+      <span class="cf">if</span> (x[i].style.color <span class="op">==</span><span class="st"> &quot;green&quot;</span>) {
+        x[i].style.color =<span class="st"> &quot;inherit&quot;</span>;
+      } <span class="cf">else</span> {
+        x[i].style.color =<span class="st"> &quot;green&quot;</span>;
+      }
+    }
+  }
+  <span class="op">&lt;</span><span class="er">/</span>script<span class="op">&gt;</span></code></pre></div></li>
+<li><p>Buttons</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&lt;</span>button class=<span class="st">&quot;btn btn-success&quot;</span> onclick=<span class="st">&quot;positive()&quot;</span><span class="op">&gt;</span>positivas<span class="op">&lt;</span><span class="er">/</span>button<span class="op">&gt;</span>
+<span class="er">&lt;</span>button class=<span class="st">&quot;btn btn-danger&quot;</span> onclick=<span class="st">&quot;negative()&quot;</span><span class="op">&gt;</span>negativas<span class="op">&lt;</span><span class="er">/</span>button<span class="op">&gt;</span>
+<span class="er">&lt;</span>button class=<span class="st">&quot;btn btn-warning&quot;</span> onclick=<span class="st">&quot;matiz()&quot;</span><span class="op">&gt;</span>matices<span class="op">&lt;</span><span class="er">/</span>button<span class="op">&gt;</span></code></pre></div></li>
+<li><p>In text</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&lt;</span>span class=<span class="st">&quot;positivo&quot;</span><span class="op">&gt;</span>espléndido<span class="op">&lt;</span><span class="er">/</span>span<span class="op">&gt;</span></code></pre></div></li>
+</ul>
+<p align="center">
+<img width="700" src="images/zawartosc_page.png">
+</p>
+<p align="center">
+<img width="700" src="images/tooltip_page.png">
+</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Wyświetlić strukturę</strong> (Akordeon wykonany w JS)</li>
+</ol>
+<ul>
+<li>Documentation to be done…</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">function</span> <span class="kw">conclusion</span>() {
+  var x =<span class="st"> </span><span class="kw">document.getElementById</span>(<span class="st">&quot;conclusion&quot;</span>);
+      <span class="cf">if</span> (x.style.display <span class="op">==</span><span class="st"> &quot;none&quot;</span>) {
+        x.style.display =<span class="st"> &quot;block&quot;</span>;
+      } <span class="cf">else</span> {x.style.display =<span class="st"> &quot;none&quot;</span>;}
+    }</code></pre></div>
+<p align="center">
+<img width="700" src="images/akordeon_page.png">
+</p>
+</div>
+</div>
+<div id="ćwiczenia-hp5-activity" class="section level2">
+<h2>Ćwiczenia: <code>HP5 activity</code> <img src="images/h5p.svg" width="20"></h2>
+<ul>
+<li>Documentation to be done…</li>
+<li>Interactive Content. Wyniki/oceny są domyślnie wpisane w dzienniku ocen.</li>
+</ul>
+<p align="center">
+<img width="700" src="images/h5p_exercise.png">
+</p>
+</div>
+<div id="pisanie-tekstów-zadanie" class="section level2">
+<h2>Pisanie tekstów: <code>zadanie</code> <img src="https://e-edu.cko.uni.wroc.pl/theme/image.php/adaptable/assign/1586901497/icon" width="20"></h2>
+<ul>
+<li><svg style="height:0.8em;top:.04em;position:relative;fill:#1177d1;" viewBox="0 0 448 512">
+<path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
+</svg>
+Dodaj aktywność lub zasób &gt; zadanie</li>
+<li>Nazwa zadania: <code>Escribe un texto. Argumentación (2)</code></li>
+<li>Opis: dokladnie deskripcje…</li>
+<li>Dostępność:
+<ul>
+<li>Termin oddania: <svg style="height:0.8em;top:.04em;position:relative;fill:#1177d1;" viewBox="0 0 512 512"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></svg> Włącz</li>
+<li>Ostateczny termin: <svg style="height:0.8em;top:.04em;position:relative;fill:#1177d1;" viewBox="0 0 512 512"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></svg> Włącz</li>
+</ul></li>
+<li>Typy zadań:
+<ul>
+<li>tylko: Tekst online<br />
+</li>
+<li>Limit słów: <svg style="height:0.8em;top:.04em;position:relative;fill:#1177d1;" viewBox="0 0 512 512"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></svg> Włącz<br />
+</li>
+</ul></li>
+<li>Typy odpowiedzi
+<ul>
+<li>tylko: Komentarz zwrotny <svg style="height:0.8em;top:.04em;position:relative;fill:#1177d1;" viewBox="0 0 512 512"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></svg> Włącz (razem z)</li>
+<li>Komentarz w tekście: TAK</li>
+</ul></li>
+</ul>
+</div>
+<div id="forum-open-forum" class="section level2">
+<h2>Forum: <code>Open Forum</code> <img src="https://e-edu.cko.uni.wroc.pl/theme/image.php/adaptable/forum/1586901497/icon" width="20"></h2>
+<ul>
+<li>Uwaga, dwa rodzaje forum w Aktywności (&gt; Open Forum)</li>
+<li>Documentation to be done…</li>
+</ul>
+<p align="center">
+<img width="700" src="images/forum.png">
+</p>
+</div>
+</div>
+<div id="raporty-oceny" class="section level1">
+<h1>Raporty, oceny</h1>
+<ul>
+<li>Administracja kursem &gt; Raporty &gt; <svg style="height:0.8em;top:.04em;position:relative;fill:#1177d1;" viewBox="0 0 512 512"><path d="M500 384c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v308h436zM372.7 159.5L288 216l-85.3-113.7c-5.1-6.8-15.5-6.3-19.9 1L96 248v104h384l-89.9-187.8c-3.2-6.5-11.4-8.7-17.4-4.7z"/></svg> Raport aktywności</li>
+</ul>
+<p align="center">
+<img width="700" src="images/raport.png">
+</p>
+<ul>
+<li><p>Check by exercise: Administracja kursem &gt; Ustawienia dziennika ocen &gt; [aktywnosci] &gt; [student | report] .</p></li>
+<li><p>Check by student: Administracja kursem &gt; Użytkownicy &gt; Zapisani użytkownicy &gt; [student] &gt; More &gt; Przegląd ocen.</p></li>
+<li><p>Download all in HTML! [zadania] &gt; Zobacz wszystkie zadania &gt; Akcja oceniania &gt; Pobierz wszystkie przesłane zadania:</p></li>
+</ul>
+</div>
+<div id="kokpit" class="section level1">
+<h1>Kokpit <svg style="height:0.8em;top:.04em;position:relative;fill:#1177d1;" viewBox="0 0 576 512"><path d="M288 32C128.94 32 0 160.94 0 320c0 52.8 14.25 102.26 39.06 144.8 5.61 9.62 16.3 15.2 27.44 15.2h443c11.14 0 21.83-5.58 27.44-15.2C561.75 422.26 576 372.8 576 320c0-159.06-128.94-288-288-288zm0 64c14.71 0 26.58 10.13 30.32 23.65-1.11 2.26-2.64 4.23-3.45 6.67l-9.22 27.67c-5.13 3.49-10.97 6.01-17.64 6.01-17.67 0-32-14.33-32-32S270.33 96 288 96zM96 384c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm48-160c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm246.77-72.41l-61.33 184C343.13 347.33 352 364.54 352 384c0 11.72-3.38 22.55-8.88 32H232.88c-5.5-9.45-8.88-20.28-8.88-32 0-33.94 26.5-61.43 59.9-63.59l61.34-184.01c4.17-12.56 17.73-19.45 30.36-15.17 12.57 4.19 19.35 17.79 15.17 30.36zm14.66 57.2l15.52-46.55c3.47-1.29 7.13-2.23 11.05-2.23 17.67 0 32 14.33 32 32s-14.33 32-32 32c-11.38-.01-20.89-6.28-26.57-15.22zM480 384c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z"/></svg></h1>
+<ul>
+<li>Nadchodzące wydarzenia, np., zadania</li>
+</ul>
+</div>
+
+<!DOCTYPE HTML>
+<p class="footer"><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg"/></a></p>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+---
+title: ""
+output: 
+  html_document:
+    toc: false
+---
+<br/>
+
+To tylko **własna** dokumentacja dla przegotowania lekcji Moodla. Zaczęło się od bullet-point-list w markdown na własny użytek, ale jakoś pozycje dorastały i myslałem, że warto podzielić się nią z kolegami zakładu.
+
+<br/>
+
+<i class="far fa-envelope"></i> [jose-luis.losada@uwr.edu.pl](mailto:jose-luis.losada@uwr.edu.pl)
+
+![](https://orcid.org/sites/default/files/images/orcid_16x16.png) [http://orcid.org/0000-0002-6530-1328](http://orcid.org/0000-0002-6530-1328)

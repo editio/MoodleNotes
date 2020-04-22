@@ -1,0 +1,23 @@
+name: "Moodle Documentation"
+output_dir: "."
+navbar:
+  title: "Moodle Documentation"
+  type: inverse
+  left:
+    - text: "About"
+      icon: fa-info
+      href: about.html
+output:
+  html_document:
+    theme: default
+    highlight: tango
+    toc: true
+    toc_float: 
+      smooth_scroll: true
+      collapsed: false
+      
+    include:
+      after_body: footer.html
+    css: styles.css
+    code_folding: NULL
+    
