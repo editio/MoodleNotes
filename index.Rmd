@@ -1,7 +1,7 @@
 ---
 title: "Moodle (own) Documentation"
 author: "José Luis Losada Palenzuela"
-date: "4/18/2020"
+date: "18/04/2020"
 output:
   html_document:
     highlight: tango
@@ -31,10 +31,11 @@ Własna dokumentacja dla przegotowania (nagłej) lekcji Moodla
 #  Dodawać, modyfikować, zmienić!
 
 - Administracja kursem > Wyłącz tryb edycji == Menu akcji `r fa("cog", fill = "#1177d1")` > Wyłącz tryb edycji
+- Administracja kursem > Edytuj ustawienia
 
 # Dodawanie *Topic*
 
-tzn. lekcja/spotkanie/zajęcia
+tzn. lekcja/spotkanie/zajęcia, które odbywa się, na przykład, 1 raz w tygodniu.
 
 - `r fa("plus", fill = "#1177d1")` (tab) Zwiększ liczbę sekcji > Modyfikuj > `r fa("cog", fill = "#1177d1")` Edytuj sekcję
 - `r fa("check-circle", , fill = "#1177d1")` Własna nazwa
@@ -67,7 +68,7 @@ Aktywność domyślna z Moodla używana do każdej treści
     - ...
 - Pytania do tekstu: `Test (Quiz)` <img src="images/quiz.svg" width="15">
 - Pisanie tekstów: `zadanie` <img src="images/zadanie.svg" width="15"> 
-- Forum: `forum` <img src="images/forum.svg" width="15">
+- Forum: `Open forum` <img src="images/forum.svg" width="15">
 - Sprawdzian: `Test (Quiz)` <img src="images/quiz.svg" width="15">
 
 <p align="center">
@@ -271,23 +272,53 @@ function conclusion() {
 
 ## Pisanie tekstów: `zadanie` <img src="https://e-edu.cko.uni.wroc.pl/theme/image.php/adaptable/assign/1586901497/icon" width="20"> 
 
+Student wpisuje tekst bezpośrednio w edytorze HTML. Ja następnie mogę dodać poprawki bezpośrednio do edytora lub pobrać je wszystkie w formacie HTML (_vide_ Jak ocenić zadanie). Student może pisać w dowolnym momencie do ostatecznego terminu.
+
 - `r fa("plus", fill = "#1177d1")` Dodaj aktywność lub zasób > zadanie
 - Nazwa zadania: `Escribe un texto. Argumentación (2)`
-- Opis: dokladnie deskripcje...
+- Opis: dokładny opis tego, co robić na zadanie; Limit słów (chociaż system to pokazuje...), itd.
 - Dostępność: 
-    - Termin oddania: `r fa("check-circle", , fill = "#1177d1")` Włącz
-    - Ostateczny termin: `r fa("check-circle", , fill = "#1177d1")` Włącz
+    - tylko: Termin oddania: `r fa("check-circle", , fill = "#1177d1")` Włącz - Tylko informuje.
+    - tylko: Ostateczny termin: `r fa("check-circle", , fill = "#1177d1")` Włącz - Po terminie system już nie zezwala na przesłanie. 
 - Typy zadań: 
     - tylko: Tekst online    
     - Limit słów: `r fa("check-circle", , fill = "#1177d1")` Włącz  
+- Ustawienia przesyłania zadania 
+    - Nie (Tak == wersja robocza dla studenta w systemie)
+    - Nie
+    - Nigdy
 - Typy odpowiedzi
     - tylko: Komentarz zwrotny `r fa("check-circle", , fill = "#1177d1")` Włącz (razem z) 
-    - Komentarz w tekście: TAK
+    - Komentarz w tekście: TAK  (`r fa("question-circle", , fill = "#1177d1")` "Jeśli aktywne, tekst pracy zostanie skopiowany do okna komentarza, pozwalając wstawić uwagi bezpośrednio w tekście")
+- Ocena
+    - Typ: Punkt > Maksimum punktów > 100
+- Powiadomienia
+    - Domyślne ustawienie dla opcji "Poinformuj studentów": TAK
+
+<p align="center">
+  <img width="700" src="images/zadanie_termin.png">
+</p>
+
+### Jak ocenić zadanie
+
+- [_Topic_] > [Zadanie] > Zobacz wszystkie zadania > [student] > Ocena
+    - dodawanie uwag bezpośrednio w tekście + oceny (punkty)
+
+<p align="center">
+  <img width="700" src="images/zadanie_check.png">
+</p>
+
+Edytor HTML nie ma narzędzia "śledź zmiany", więc dla dużo ilości zadań z wieloma błędami warto dokonać korekty w Wordzie. 
+
+- [_Topic_] > [Zadanie] > Zobacz wszystkie zadania > Akcja oceniania > Pobierz wszystkie przesłane zadania
+- Open HTML in Word > Track changes > save it.
+- Open in browser, copy&paste from there into HTML editor.
+- extra: edit HTML tags `<ins` or `<del` with `style="color: red"`, to add color to the corrections.
 
 
 ## Forum: `Open Forum` <img src="https://e-edu.cko.uni.wroc.pl/theme/image.php/adaptable/forum/1586901497/icon" width="20">
 
-- Uwaga, dwa rodzaje forum w Aktywności (> Open Forum)
+- Uwaga, dwa rodzaje forum w Aktywności (> Open Forum oraz Forum)
 - Documentation to be done...
 
 <p align="center">
@@ -306,7 +337,6 @@ function conclusion() {
 
 - Check by student: Administracja kursem > Użytkownicy > Zapisani użytkownicy > [student] > More > Przegląd ocen. 
 
-- Download all in HTML! [zadania] > Zobacz wszystkie zadania > Akcja oceniania > Pobierz wszystkie przesłane zadania:  
 
 # Kokpit `r fa("tachometer-alt", fill = "#1177d1")`
 

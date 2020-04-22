@@ -10,6 +10,8 @@ To tylko **własna** dokumentacja dla przegotowania lekcji Moodla. Zaczęło si�
 
 <br/>
 
+<i class="fa fa-github"></i> MoodleNotes w Github: <a href="https://github.com/editio">editio</a></p> 
+
 <i class="far fa-envelope"></i> [jose-luis.losada@uwr.edu.pl](mailto:jose-luis.losada@uwr.edu.pl)
 
 ![](https://orcid.org/sites/default/files/images/orcid_16x16.png) [http://orcid.org/0000-0002-6530-1328](http://orcid.org/0000-0002-6530-1328)
