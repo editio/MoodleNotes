@@ -1,7 +1,7 @@
 ---
 title: "Moodle (own) Documentation"
 author: "José Luis Losada Palenzuela"
-date: "18/04/2020"
+date: "Date: 18/04/2020 <br> Update: `r format(Sys.time(), '%d/%m/%Y')`"
 output:
   html_document:
     highlight: tango
@@ -56,7 +56,7 @@ Przykład treści lekcji, która została wymyślona dla każdej lekcji. Każda 
 - Pytania do tekstu 
 - Pisanie tekstów
 - Forum
-- Sprawdzian
+- Sprawdzian / Kolokwium
 
 Aktywność domyślna z Moodla używana do każdej treści 
 
@@ -243,34 +243,59 @@ Ta wersja Moodle zawiera domyślny **Bootstrap**!, więc można używać atrybut
   <img width="700" src="images/tooltip_page.png">
 </p>
 
-3. **Wyświetlić strukturę** (Akordeon wykonany w JS)
+3. **Wyświetlić strukturę** ~~(Akordeon wykonany w JS)~~ tylko bootstrap classes!
 
-- Documentation to be done...
+- Pozwala na wyświetlanie treści po kliknięciu
+- wystarczy skopiować i wkleić do edytora html
+
 
 ```{r, eval=FALSE}
-function conclusion() {
-  var x = document.getElementById("conclusion");
-	  if (x.style.display == "none") {
-	    x.style.display = "block";
-	  } else {x.style.display = "none";}
-	}
+<div class="container"> # Add a general container
+  <h3>Reseña cinematográfica</h3>
+  <p>Expande cada uno de los bloques...</p>
+
+  <div class="panel">
+      <button class="btn btn-info btn-block" data-toggle="collapse" data-target="#collapse1">Asunto: antecedentes<i class="icon fa fa-angle-down rotate-icon"></i></button>
+      <div id="collapse1" class="panel-collapse collapse">
+          <div class="panel-body">Lorem ipsum dolor sit amet,...</div> 
+      </div>
+  </div>
+
+  <div class="panel">
+      <button class="btn btn-info btn-block" data-toggle="collapse" data-target="#collapse2">Asunto: obra <i class="icon fa fa-angle-down rotate-icon"></i></button>
+      <div id="collapse2" class="panel-collapse collapse">
+          <div class="panel-body">Lorem ipsum dolor sit amet,...</div>
+      </div>
+  </div> 
+        # Add more panels if needed
+</div>  
 ```
 
 <p align="center">
   <img width="700" src="images/akordeon_page.png">
 </p>
-
+ 
 
 ## Ćwiczenia: `HP5 activity` <img src="images/h5p.svg" width="20">
 
-- Documentation to be done...
-- Interactive Content. Wyniki/oceny są domyślnie wpisane w dzienniku ocen.
+Interactive Content. Wyniki/oceny są domyślnie wpisane w dzienniku ocen.
+
+- `r fa("plus", fill = "#1177d1")` Dodaj aktywność lub zasób > Interactive Content 
+- Editor > Wybierz typ zasobu > np.: Drag the words
+- Postępować zgodnie z instrukcjami, ponieważ są one bardzo jasne: 
+    - oznakowane gwiazdką (\*) z obu stron: "no soñaría con \*ponerse a\* viajar"
+    - podpowiedź po dwukropku (:) `r fa("info-circle", fill = "#1177d1")` "no soñaría con \*ponerse a**:**perífrasis incoativa como 'echarse a'\* viajar"
+- btw: `r fa("lightbulb",fill="tomato")` nie ma potrzeby przeciągania słów: można kliknąć i powtórzyć kliknięcie na gap: jest one automatycznie kopiowana.
+
+<p align="center">
+  <img width="700" src="images/h5p_drag.png">
+</p>
 
 <p align="center">
   <img width="700" src="images/h5p_exercise.png">
 </p>
 
-## Pisanie tekstów: `zadanie` <img src="https://e-edu.cko.uni.wroc.pl/theme/image.php/adaptable/assign/1586901497/icon" width="20"> 
+## Pisanie tekstów: `zadanie` <img src="images/zadanie.svg" width="20"> 
 
 Student wpisuje tekst bezpośrednio w edytorze HTML. Ja następnie mogę dodać poprawki bezpośrednio do edytora lub pobrać je wszystkie w formacie HTML (_vide_ Jak ocenić zadanie). Student może pisać w dowolnym momencie do ostatecznego terminu.
 
@@ -316,14 +341,55 @@ Edytor HTML nie ma narzędzia "śledź zmiany", więc dla dużo ilości zadań z
 - extra: edit HTML tags `<ins` or `<del` with `style="color: red"`, to add color to the corrections.
 
 
-## Forum: `Open Forum` <img src="https://e-edu.cko.uni.wroc.pl/theme/image.php/adaptable/forum/1586901497/icon" width="20">
+## Forum: `Open Forum` <img src="images/forum.svg" width="20">
 
-- Uwaga, dwa rodzaje forum w Aktywności (> Open Forum oraz Forum)
-- Documentation to be done...
+- Uwaga: dwa rodzaje forum w Aktywności (> Open Forum oraz Forum).
+- Uwaga: 30 minutowy limit na edycję lub usunięcie posta.
+- `r fa("plus", fill = "#1177d1")` Dodaj aktywność lub zasób > Open forum.
+- Forum name:  bądź kreatywny...
+- Description:
+    - Na pasek narzędzi edytora HTML: `r fa("level-down-alt", fill = "grey")`
+    - Wraz z tematem dodałem filmik wprowadzający do dyskusji. Uwaga: Dodałem filmik, który zapisałem bezpośrednio na platformie e-edu (w repozytorium), ale studentka sygnalizowała, że nie działał w jej browser (ostatnia wersja safari?): Zamieniłem go na YouTube.
+- Forum type: A single simple discussion.    
+- Post options:  tylko Display word count `r fa("check-circle", , fill = "#1177d1")`.
+- Attachments > Maximum attachment size > Przesyłanie plików jest zakazane.
+- Subscription > Optional Subscription.
+- Ocena: chociaż można go ocenić jak w normalnym zadaniu, na razie motywuję tylko do uczestnictwa.
+ 
+### Extra stuff (video)
 
+- [full-width iframe with fixed aspect ratio](https://jameshfisher.com/2017/08/30/how-do-i-make-a-full-width-iframe/). To start a youtube video at a exact time.
+ 
 <p align="center">
   <img width="700" src="images/forum.png">
 </p>
+
+## Kolokwium `zadanie` <img src="images/zadanie.svg" width="20">
+
+Kolokwium polega na napisaniu tekstu.
+
+- `r fa("plus", fill = "#1177d1")` (tab) Zwiększ liczbę sekcji > Modyfikuj > `r fa("cog", fill = "#1177d1")` Edytuj sekcję
+- `r fa("check-circle", , fill = "#1177d1")` Własna nazwa > "Kolokwium"
+- Streszczenie: ogólne informacje z wyprzedzeniem o kiedy, jak, co itd. Kolokwium jako tako dodam w formie aktywności lub zasobu.
+- Background color > #BAF4FF (HEX).  Zaznaczyć tylko zakładkę (topic) kolokwium innym kolorem.
+
+Teraz dokładnie taka sama procedura jak pisanie tekstów: `zadanie` <img src="images/zadanie.svg" width="20">. Różnica polega tylko na dostępności: zaczyna się i kończy się o określonej godzinie i dniu.
+
+- Dostępność: 
+    - tylko: **Zezwól na przesyłanie zadań od**: `r fa("check-circle", , fill = "#1177d1")` Włącz - "studenci nie będą mogli przesyłać rozwiązań przed wybraną datą."
+    - tylko: Termin oddania: `r fa("check-circle", , fill = "#1177d1")` Włącz - Tylko informuje. Student sam kontroluje czas... system rejestruje, jeśli nie odda na czas. Ostateczny termin ustalam trochę później w przypadku pojawenia się problem techniczny, itp.
+    - tylko: Ostateczny termin: `r fa("check-circle", , fill = "#1177d1")` Włącz - Po terminie system już nie zezwala na przesłanie. 
+    - Zawsze udostępniaj treść zadania:  Wyłącz - "treść zadania będzie widoczna dla studentów dopiero po dacie rozpoczęcia przyjmowania prac". Pozwala na publikację aktywności bez konieczności ukrywania przed studentami.
+
+- Ustawienia przesyłania zadania 
+    - Nie (Tak == wersja robocza dla studenta w systemie). Studenci zgłosili, że czasami system sam się resetuje i tracą pracę, prawdopodobnie, bo browser na gorszych komputerach używa zbyt dużo pamięci. Ale jeśli wersja robocza jest dozwolona, student musi oznaczyć składaną pracę jako zakończoną.
+    - Nie
+    - Nigdy
+
+<p align="center">
+  <img width="700" src="images/kolokwium.png">
+</p>
+
 
 # Raporty, oceny
 
