@@ -285,7 +285,7 @@ Interactive Content. Wyniki/oceny są domyślnie wpisane w dzienniku ocen.
 - Postępować zgodnie z instrukcjami, ponieważ są one bardzo jasne: 
     - oznakowane gwiazdką (\*) z obu stron: "no soñaría con \*ponerse a\* viajar"
     - podpowiedź po dwukropku (:) `r fa("info-circle", fill = "#1177d1")` "no soñaría con \*ponerse a**:**perífrasis incoativa como 'echarse a'\* viajar"
-- btw: `r fa("lightbulb",fill="tomato")` nie ma potrzeby przeciągania słów: można kliknąć i powtórzyć kliknięcie na gap: jest one automatycznie kopiowana.
+- btw: `r fa("lightbulb",fill="tomato")` nie ma potrzeby przeciągania słów: można kliknąć i powtórzyć kliknięcie na lukę: jest one automatycznie kopiowana.
 
 <p align="center">
   <img width="700" src="images/h5p_drag.png">
