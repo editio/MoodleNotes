@@ -106,7 +106,7 @@ Tip! `r fa("lightbulb",fill="tomato")` Po utworzeniu pytania można je duplikowa
 - Extra stuff:
     - Pole do pytań i odpowiedzi jest edytorem HTML, więc można dodać, n.p., link do słownika, obraz itd.
     - Informacja zwrotna: dodawania wyjaśnienie 
-4. Dodawania pytania w *Topic*
+3. Dodawania pytania w *Topic*
 
 - Dodawanie Topic (vide supra) > `r fa("plus", fill = "#1177d1")` Dodaj aktywność lub zasób > Test (Quiz)
     - Nazwa: n.p. `Comprensión del texto 11c`
@@ -125,7 +125,7 @@ Tip! `r fa("lightbulb",fill="tomato")` Po utworzeniu pytania można je duplikowa
   <img width="700" src="images/pytanie.png">
 </p>
 
-5. Inne
+4. Inne
 
   - Na razie używam z bazy pytań jeszcze Prawda/Fałsz. Dla innego typu pytań, HP5 activity.
   - Używać `Test (Quiz)` do kolokwium z ustaloną datę, itd. (documentation to be done)
@@ -399,10 +399,20 @@ Teraz dokładnie taka sama procedura jak pisanie tekstów: `zadanie` <img src="i
   <img width="700" src="images/raport.png">
 </p>
 
-- Check by exercise: Administracja kursem > Ustawienia dziennika ocen > [aktywnosci] > [student | report] .
+- Check by student: Administracja kursem > Użytkownicy > Zapisani użytkownicy > [student] > More > Streszczenie raportu.
 
-- Check by student: Administracja kursem > Użytkownicy > Zapisani użytkownicy > [student] > More > Przegląd ocen. 
+<p align="center">
+  <img width="700" src="images/streszczenie.png">
+</p>
 
+- All marks in a table:  Administracja kursem > Ustawienia dziennika ocen > Eksportuj  [CSV | XLSX | ODS].
+    - colored cells in excel: format > condicional formating.
+
+<p align="center">
+  <img width="700" src="images/excel_export.png">
+</p>
+
+- Check by exercise: Administracja kursem > Ustawienia dziennika ocen > [aktywnosci] > [student | report].
 
 # Kokpit `r fa("tachometer-alt", fill = "#1177d1")`
 
