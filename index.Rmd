@@ -16,11 +16,13 @@ Własna dokumentacja dla przegotowania (nagłej) lekcji Moodla
 
 # Otworzenie kursu przez CKO
 
-1. Mail do <cko@uwr.edu.pl> z informację:
+~~1. Mail do cko@uwr.edu.pl z informację:~~
 
-- *nazwę przedmiotu*: __
-- *kody USOS przedmiotów*: __
-- *podpis zawierający nazwę Wydział/Instytut/Zakład*: __ 
+~~- *nazwę przedmiotu*:~~
+~~- *kody USOS przedmiotów*:~~
+~~- *podpis zawierający nazwę Wydział/Instytut/Zakład*:~~
+
+1. Skontaktować się z <cko@uwr.edu.pl>.
 
 2. Link do kursu : <https://e-edu.cko.uni.wroc.pl/course/view.php?id=1552>
 
@@ -32,6 +34,13 @@ Własna dokumentacja dla przegotowania (nagłej) lekcji Moodla
 
 - Administracja kursem > Wyłącz tryb edycji == Menu akcji `r fa("cog", fill = "#1177d1")` > Wyłącz tryb edycji
 - Administracja kursem > Edytuj ustawienia
+
+# Format kursu: oneTopic format
+
+Układ stron kursu: `oneTopic` to domyślny format, ale zamiast na tematy, można podzielic na cotygodniowe sekcje.
+
+- Administracja kursem > Edytuj ustawienia > Format kursu > onetopic format [default]
+
 
 # Dodawanie *Topic*
 
@@ -86,7 +95,7 @@ Tekst do czytania nie będzie na stronie, na której znajdują się pytania.
 
 - Administracja kursem > Baza pytań > utwórz nowe pytanie
 2.  Wybierz rodzaj pytania: n.p. <img src="https://e-edu.cko.uni.wroc.pl/theme/image.php/adaptable/qtype_multichoice/1586901497/icon"  width="15"> `Wybór wielokrotny`
-- Nazwa pytania: ważny! nazwa, która dobrze identyfikuje pytanie w kursie: **Texto 9 - 1.1** , tzn:  Topic (**Texto 9**) - zewstaw pytań(**1**) . NumPytania(**1**) (w tym sposób mogę je potem lepiej zidentyfikować na liście).
+- Nazwa pytania: ważny! nazwa, która dobrze identyfikuje pytanie w kursie: **Texto 9 - 1.1** , tzn:  Topic (**Texto 9**) - zewstaw pytań(**1**) . NumPytania(**1**) (w tym sposób mogę je potem lepiej zidentyfikować na liście). Update: można dodać "tags" > tagi.
 - Treść pytania: wpisz pytania! `¿Cuál es el tema del siguiente texto?`
 - Wymieszaj odpowiedzi (niezaznaczone)
 - Odpowiedzi: 
